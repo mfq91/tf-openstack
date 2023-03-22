@@ -2,11 +2,11 @@
 
 Este proyecto despliega unos cuantos recursos en una instalación por defecto de Microstack, implementación que ha hecho Canonical de Openstack
 
-### Backend de Terraform
+### Backend
 
-Se almacena en Amazon S3 (cuenta mfq-pro-account)
+El backend para este proyecto de Terraform se almacena en un bucket S3 (cuenta mfq-pro-account)
 
-### Terraform workspaces
+### Workspaces
 
 Este proyecto utiliza workspaces. En cada workspace utilizamos el fichero tfvars correspondiente
 
@@ -14,13 +14,19 @@ Este proyecto utiliza workspaces. En cada workspace utilizamos el fichero tfvars
 
 Las instancias que se generan ejecutan scripts de la carpeta cac
 
-### dependencias
+### Requerimientos
 
-- clave de administración (pass que se pasa de momento como variable)
-- ip del host (actualmente se pasa como variable y es la 192.168.0.2, de sylar en la red local)
-- un keypair creado con nombre "test", que se inyectará en las instancias
+- Terraform instalado
+- Canonical Microstack instalado en un servidor con Ubuntu
 
-### ejemplo de uso para desplegar en el workspace de PRO
+# Variables
+
+De momento, el proyecto depende de los siguientes elementos:
+- clave de administración (pass de Horizon, que se pasa de momento como variable)
+- ip del host en el que se encuentra microstack (actualmente se pasa como variable y es la 192.168.0.2, de sylar en la red local)
+- un keypair creado con nombre "test", que se inyectará en las instancias (pendiente de corregir)
+
+### Ejemplo de uso para desplegar en el workspace productivo
 
 Inicializar:
 ```
