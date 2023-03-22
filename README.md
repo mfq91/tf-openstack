@@ -1,16 +1,16 @@
-# tf-openstack
+## Terraform Openstack
 
-## Este proyecto despliega unos cuantos recursos en una instalación por defecto de Microstack, implementación que ha hecho Canonical de Openstack
+### Este proyecto despliega unos cuantos recursos en una instalación por defecto de Microstack, implementación que ha hecho Canonical de Openstack
 
-# backend
+## Backend de Terraform
 
-## en s3 (cuenta mfq-pro-account)
+### en s3 (cuenta mfq-pro-account)
 
-# workspaces
+## Terraform workspaces
 
-## Este proyecto utiliza workspaces. En cada workspace utilizamos el fichero tfvars correspondiente
+### Este proyecto utiliza workspaces. En cada workspace utilizamos el fichero tfvars correspondiente
 
-# cac
+## Configuración como código
 
 ## Las instancias que se generan ejecutan scripts de la carpeta cac
 
