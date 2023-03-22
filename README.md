@@ -20,7 +20,7 @@
 #### ip del host (actualmente se pasa como variable y es la 192.168.0.2, de sylar en la red local)
 #### un keypair creado con nombre "test", que se inyectará en las instancias
 
-### ejemplo de uso para desplegar en el workspace de PRO
+ejemplo de uso para desplegar en el workspace de PRO
 
 ```
 terraform init -reconfigure
