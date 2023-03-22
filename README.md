@@ -22,9 +22,11 @@
 
 ### ejemplo de uso para desplegar en el workspace de PRO
 
-`terraform init -reconfigure`
-`terraform workspace list`
-`terraform workspace select pro`
-`terraform plan --var-file=.\env\pro.tfvars`
-`terraform apply --var-file=.\env\pro.tfvars`
-`terraform destroy --var-file=.\env\pro.tfvars`
+```
+terraform init -reconfigure
+terraform workspace list
+terraform workspace select pro
+terraform plan --var-file=.\env\pro.tfvars
+terraform apply --var-file=.\env\pro.tfvars
+terraform destroy --var-file=.\env\pro.tfvars
+```
