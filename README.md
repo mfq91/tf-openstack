@@ -19,7 +19,7 @@ Las instancias que se generan ejecutan scripts de la carpeta cac
 - Terraform instalado
 - Canonical Microstack instalado en un servidor con Ubuntu
 
-# Administración
+### Administración
 
 Ejemplo de túnel ssh para acceder a Horizon (la interfaz web gráfica de Openstack):
 ```
@@ -28,7 +28,7 @@ ssh -L 8001:10.20.20.1:443 -N -f mauro@192.168.0.2 -f
 
 Con eso ya podríamos acceder a Horizon visitando: "https://localhost:8001"
 
-# Variables
+### Variables
 
 De momento, el proyecto depende de los siguientes elementos:
 - clave de administración (pass de Horizon, que se pasa de momento como variable)
