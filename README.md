@@ -53,11 +53,15 @@ Planear:
 ```
 terraform plan --var-file=.\env\pro.tfvars
 ```
-Aplicar:
+Aplicar pidiendo confirmación:
 ```
 terraform apply --var-file=.\env\pro.tfvars
 ```
+Aplicar sin pedir confirmación:
+```
+terraform apply --auto-approve --var-file=.\env\pro.tfvars
+```
 Destruir:
 ```
-terraform destroy --var-file=.\env\pro.tfvars
+terraform destroy --auto-approve --var-file=.\env\pro.tfvars
 ```
