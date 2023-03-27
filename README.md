@@ -28,6 +28,9 @@ ssh -L 8001:10.20.20.1:443 -N -f mauro@192.168.0.2 -f
 
 Con eso ya podríamos acceder a Horizon visitando: "https://localhost:8001"
 
+Usuario Horizon: admin
+Password Horizon: resultado de ejecutar "sudo snap get microstack config.credentials.keystone-password"
+
 ### Variables
 
 De momento, el proyecto depende de los siguientes elementos:
