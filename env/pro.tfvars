@@ -1,6 +1,5 @@
 openstack_user_name = "admin"
 openstack_tenant_name = "admin"
-openstack_password = "ATpbHFv4DxijOcjFgyzqDUpNp7nNTDNv"
 openstack_auth_url = "https://192.168.0.2:5000/v3"
 ubuntu_instance_name = "cirros"
 security_groups = [ "default" ]
