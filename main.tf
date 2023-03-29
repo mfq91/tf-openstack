@@ -27,7 +27,7 @@ resource "openstack_compute_instance_v2" "openstack_instance" {
   security_groups = var.security_groups
   image_name = var.image_name
   flavor_name = var.flavor_name
-  key_pair        = data.openstack_compute_keypair_v2.test_keypair.name
+  key_pair        = openstack_compute_keypair_v2.sylar_keypair.name
   network {
     name =   "${openstack_networking_network_v2.openstack_network.name}"
     #port = "${openstack_networking_port_v2.port_1.id}"
@@ -39,103 +39,45 @@ resource "openstack_compute_instance_v2" "openstack_instance" {
 
 }
 
-# Revisar
+resource "openstack_networking_floatingip_v2" "openstack_fip" {
+  pool = "external"
+}
 
-# resource "openstack_compute_openstack_security_group_v2" "openstack_security_group" {
-#   name        = var.openstack_security_group_name
-#   description = var.openstack_security_group_desc
+resource "openstack_compute_floatingip_associate_v2" "openstack_fip_association" {
+  floating_ip = "${openstack_networking_floatingip_v2.openstack_fip.address}"
+  instance_id = "${openstack_compute_instance_v2.openstack_instance.id}"
+}
 
-#   rule {
-#     from_port   = var.from_port
-#     to_port     = var.to_port
-#     ip_protocol = var.ip_protocol
-#     cidr        = var.cidr
-#   }
-# }
+resource "openstack_compute_keypair_v2" "sylar_keypair" {
+  name       = "sylar-keypair"
+  public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCwO2yC+tK8UtPzc+7DnsZOhD7WutyzludC6NoMZ2tTx6aRl89EL90WXy7p1l4uHhJ4brGdub78dakmYYhSGQQAI2nU/7gAwX7w2h9hJE5KfWL/DKTKW7WL8R+wtBunQsg+5gptJVWJTVvNMnsOPgk2bfG4XMpBDLCCTOY4POXBpOucGYjloUM8rYJLmVmQrWnJ/ljewwJ1mC4f3UrgWaowMP6sBvEqKFvv8Jt3chNMhhC5DQ3Sz3B7k2BYQt+/qQw6xF8weZlJpPSa5b7bE1CjXQl7bBSmtX37hYvUwHNKZwQEY880J/+7K6tCARf8qlit8nFabn/y+ihu1PJ6kt58cPsIIXk2D6D5jkv0pBFIitL4CXu8PvVSkTqys2FBx6r2//PjpNhGCZTzI9tNLJ0wnAn0Fp6eV2luPt3o2V8FKiZXaXRNz1cn7FmicyNq2XJhxchozDyVkF+SwKjfm5HYXuzWLFdC981Lkzd56U+FDpFhnf/QTMWePn1o9p8DhSk= mauro@sylar"
+}
 
-# resource "openstack_networking_port_v2" "port_1" {
-#   name               = "port_1"
-#   network_id         = "${openstack_networking_network_v2.openstack_network.id}"
-#   admin_state_up     = "true"
-#   security_group_ids = ["${openstack_compute_openstack_security_group_v2.openstack_security_group.id}"]
+resource "openstack_images_image_v2" "rancheros" {
+  name             = "RancherOS"
+  image_source_url = "https://releases.rancher.com/os/latest/rancheros-openstack.img"
+  container_format = "bare"
+  disk_format      = "qcow2"
+  visibility = "public"
+}
 
-#   fixed_ip {
-#     subnet_id  = "${openstack_networking_subnet_v2.openstack_subnet.id}"
-#     ip_address = "10.0.1.10"
-#   }
-# }
-
-#-----------------------------
-# Call modules
-#-----------------------------
-
-
-# variable "enable_module" {
-#   default = {
-#     openstack_network              = true
-#     openstack_router              = true
-#     openstack_subnet = true
-#     openstack_network_port = false
-#     openstack_security_group              = true
-#     openstack_compute_instance      = true
-#   }
-#   type = object({
-#     openstack_network              = bool
-#     openstack_router              = bool
-#     openstack_subnet = bool
-#     openstack_network_port = bool
-#     openstack_security_group              = bool
-#     openstack_compute_instance      = bool
-#   })
-# }
-
-# # Networking
-
-# module "openstack_network" {
-#   source               = "./modules/openstack_network"
-#   count                = var.enable_module.openstack_network ? 1 : 0
-#   network_name = "pro"
-#   network_admin_state_up = "true"
-# }
-
-# module "openstack_router" {
-#   source               = "./modules/openstack_router"
-#   count                = var.enable_module.openstack_router ? 1 : 0
-#   openstack_router_name = "pro"
-#   openstack_external_network_id = "035ed6d7-be31-41aa-b943-75b167200ae5"
-#   subnet_id = module.openstack_subnet.subnet_id
-# }
-
-# module "openstack_subnet" {
-#   source               = "./modules/openstack_subnet"
-#   count                = var.enable_module.openstack_subnet ? 1 : 0
-#   subnet_name = module.openstack_network.network_name
-#   network_id = module.openstack_network.network_id
-#   cidr = "0.0.0.0/0"
-#   ip_version = 4
-  
-# }
-
-# module "openstack_network_port" {
-#   source               = "./modules/openstack_network_port"
-#   count                = var.enable_module.openstack_network_port ? 1 : 0
+resource "openstack_images_image_v2" "ubuntu_jammy" {
+  name             = "UbuntuJammy"
+  image_source_url = "https://cloud-images.ubuntu.com/jammy/current/jammy-server-cloudimg-amd64-disk-kvm.img"
+  container_format = "bare"
+  disk_format      = "raw"
+  visibility = "public"
+}
 
 
-# }
+resource "openstack_compute_flavor_v2" "openstack_m1_mini_flavor" {
+  name  = "mfq.mini"
+  ram   = "1024"
+  vcpus = "1"
+  disk  = "16"
 
-# module "openstack_security_group" {
-#   source               = "./modules/openstack_security_group"
-#   count                = var.enable_module.openstack_security_group ? 1 : 0
-#   openstack_security_group_name = "allow-ssh-sg"
-#   openstack_security_group_desc = "allow-ssh-sg"
-# }
-
-# module "openstack_compute_instance" {
-#   source               = "./modules/openstack_compute_instance"
-#   count                = var.enable_module.openstack_compute_instance ? 1 : 0
-#   name= "ubuntu"
-#   security_groups = [module.openstack_security_group[0].sg_name]
-#   image_name = "ubuntu-22.04"
-#   flavor_name = "m1.small"
-#   network_name = module.openstack_network.network_name
-# }
+  extra_specs = {
+    "hw:cpu_policy"        = "CPU-POLICY",
+    "hw:cpu_thread_policy" = "CPU-THREAD-POLICY"
+  }
+}
