@@ -32,7 +32,7 @@ Con eso ya podríamos acceder a Horizon visitando: "https://localhost:8001"
 Usuario Horizon: admin
 Password Horizon: resultado de ejecutar en el servidor "sudo snap get microstack config.credentials.keystone-password"
 
-# Definir variable de entorno con pass de openstack
+### Definir variable de entorno con pass de openstack
 
 Obtener password:
 
