@@ -18,5 +18,6 @@ variable "ip_protocol" {}
 variable "cidr" {}
 variable "subnet_name" {}
 variable "subnet_cidr" {}
+variable "prefix" {}
 
 
