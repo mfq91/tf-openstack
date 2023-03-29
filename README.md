@@ -10,10 +10,6 @@ El backend para este proyecto de Terraform se almacena en un bucket S3 (cuenta m
 
 Este proyecto utiliza workspaces. En cada workspace utilizamos el fichero tfvars correspondiente
 
-### Configuración como código
-
-Las instancias que se generan ejecutan scripts de la carpeta cac
-
 ### Requerimientos
 
 - Terraform instalado en nuestro equipo
