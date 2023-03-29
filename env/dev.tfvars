@@ -1,10 +1,11 @@
 openstack_user_name = "admin"
 openstack_tenant_name = "admin"
 openstack_auth_url = "https://192.168.0.2:5000/v3"
-ubuntu_instance_name = "cirros"
+ubuntu_instance_name = "ubuntu"
+#cirros_instance_name = "cirros"
 security_groups = [ "default" ]
 image_name = "cirros"
-flavor_name = "m1.tiny"
+flavor_name = "m1.small"
 network_name = "dev"
 network_admin_state_up = "true"
 openstack_router_name = "dev"
