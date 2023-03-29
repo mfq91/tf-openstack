@@ -18,7 +18,11 @@ Las instancias que se generan ejecutan scripts de la carpeta cac
 
 - Terraform instalado en nuestro equipo
 - AWS CLI instalado en nuestro equipo y configurado con credenciales que tengan permisos sobre el S3 en el que se guardan los ficheros de estado de Terraform
-- Canonical Microstack instalado en un servidor con Ubuntu
+- Canonical Microstack instalado en un servidor con Ubuntu (min 8 GB RAM)
+```
+sudo snap install --edge microstack
+sudo microstack init --auto --control
+```
 
 ### Administración
 
