@@ -26,7 +26,8 @@ sudo microstack init --auto --control
 
 ### Administración
 
-Ejemplo de túnel ssh para acceder a Horizon (la interfaz web gráfica de Openstack):
+Ejemplo de túnel ssh para acceder a Horizon (la interfaz web de Openstack) desde nuestro equipo:
+
 ```
 ssh -L 8001:10.20.20.1:443 -N -f mauro@192.168.0.2 -f
 ```
