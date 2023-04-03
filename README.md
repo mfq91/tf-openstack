@@ -78,3 +78,9 @@ Destruir:
 ```
 terraform destroy --auto-approve --var-file=.\env\pro.tfvars -var "openstack_password=$env:openstack_password"
 ```
+
+### Outputs a variables de entorno
+```
+$env:TF_VAR_ssh_chain = (terraform output ssh_chain)
+Write-Host "El valor de TF_VAR_ssh_chain es $($env:TF_VAR_ssh_chain)"
+```
