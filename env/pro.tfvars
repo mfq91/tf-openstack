@@ -1,6 +1,6 @@
 openstack_user_name = "admin"
 openstack_tenant_name = "admin"
-openstack_auth_url = "https://192.168.0.2:5000/v3"
+openstack_auth_url = "https://192.168.0.2:5000/v3" # cambiar ip por la del servidor openstack
 ubuntu_instance_name = "ubuntu"
 security_groups = [ "default" ]
 image_name = "cirros"
@@ -8,7 +8,6 @@ flavor_name = "m1.small"
 network_name = "pro"
 network_admin_state_up = "true"
 openstack_router_name = "pro"
-#openstack_external_network_id = "afb7428f-63dc-4bf0-8050-02b5d9c08d3a"
 openstack_security_group_name = "allowssh-sg"
 openstack_security_group_desc = "allowssh-sg"
 from_port = 22
